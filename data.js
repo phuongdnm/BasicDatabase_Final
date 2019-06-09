@@ -38,8 +38,13 @@ for (var i = 0; i < 200; i ++){
     var o = new Date(faker.date.past());
     var statusArray = ['Received', 'Ongoing', 'Shipped'];
     var status = '' + statusArray[Math.floor(Math.random()*statusArray.length)];
-    order += '(' + (Math.floor(Math.random() * 100)+1) + ', \'' + dateFormat(o, "yyyy-mm-dd") + '\', ' + (Math.floor(Math.random() * 40)+1) + ',\'' + status + '\'),' + '\n';
-    ord_detail += '(' + (Math.floor(Math.random() * 200)+1) + ', ' + (Math.floor(Math.random() * 100)+1) + ', ' + Math.floor(Math.random() * 14) + '),' + '\n';
+    order += '(' + (Math.floor(Math.random() * 100)+1) + ', \'' + 
+            dateFormat(o, "yyyy-mm-dd") + '\', ' + 
+            (Math.floor(Math.random() * 40)+1) + ',\'' + 
+            status + '\'),' + '\n';
+    ord_detail += '(' + (Math.floor(Math.random() * 200)+1) + ', ' + 
+            (Math.floor(Math.random() * 100)+1) + ', ' + 
+            Math.floor(Math.random() * 14) + '),' + '\n';
 };
 fs.writeFile('test.txt', author, function(err){
     if(err){
