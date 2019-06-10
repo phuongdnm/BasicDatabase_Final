@@ -58,6 +58,29 @@ CREATE TABLE Orders(
     FOREIGN KEY (shipper_id) REFERENCES Shippers(id)
 );
 
+CREATE VIEW book_rank AS
+SELECT 
+    Books.id,
+    title,
+    CONCAT(first_name, ' ', last_name),
+    AVG(rating),
+    COUNT(quantity)
+FROM Books
+INNER JOIN Authors ON Books.author_id = Authors.id
+INNER JOIN Orders ON Books.id = Orders.book_id
+INNER JOIN Ratings ON Books.id = Ratings.book_id
+GROUP BY Books.id ORDER BY rating DESC, COUNT(quantity) DESC;
+
+CREATE VIEW order_history AS
+SELECT 
+  customer_id,
+  CONCAT(first_name, ' ', last_name) AS full_name,
+  title,
+  (price * quantity) AS total_amount
+FROM Orders
+  INNER JOIN Customers ON Orders.customer_id = Customers.id
+  INNER JOIN Books ON Orders.book_id = Books.id;
+
 
 
 
