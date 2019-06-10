@@ -4,8 +4,8 @@ USE Book_store;
 
 CREATE TABLE Authors(
     id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    first_name VARCHAR(20),
-    last_name VARCHAR(20),
+    first_name VARCHAR(20) NOT NULL,
+    last_name VARCHAR(20) NOT NULL,
     company_name VARCHAR(50)
 );
 
@@ -47,21 +47,15 @@ CREATE TABLE Ratings(
 
 CREATE TABLE Orders(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    book_id INT NOT NULL,
     customer_id INT NOT NULL,
     date DATE NOT NULL,
     shipper_id INT NOT NULL,
+    quantity INT,
     status VARCHAR(10),
+    FOREIGN KEY (book_id) REFERENCES Books(id),
     FOREIGN KEY (customer_id) REFERENCES Customers(id),
     FOREIGN KEY (shipper_id) REFERENCES Shippers(id)
-);
-
-CREATE TABLE Order_details(
-    order_id INT NOT NULL,
-    book_id INT NOT NULL,
-    quantity INT,
-    amount INT,
-    FOREIGN KEY (order_id) REFERENCES Orders(id),
-    FOREIGN KEY (book_id) REFERENCES Books(id)
 );
 
 
