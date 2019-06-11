@@ -5,8 +5,7 @@ var book = 'INSERT INTO Books( title, published_date, ISBN, price, stock_quantit
 var author = 'INSERT INTO Authors( first_name, last_name, company_name) VALUES \n';
 var rating = 'INSERT INTO Ratings( book_id, customer_id, rating) VALUES \n';
 var customer = 'INSERT INTO Customers( first_name, last_name, street, city, phone_number, email) VALUES \n';
-var order = 'INSERT INTO Orders( customer_id, date, shipper_id, status) VALUES \n';
-var ord_detail = 'INSERT INTO Order_details( order_id, book_id, quantity) VALUES \n';
+var order = 'INSERT INTO Orders( book_id, customer_id, date, shipper_id, quantity, status) VALUES \n';
 var shipper = 'INSERT INTO Shippers( name, phone_number) VALUES \n';
 
 for (var i = 0; i < 100; i ++){
@@ -38,13 +37,12 @@ for (var i = 0; i < 200; i ++){
     var o = new Date(faker.date.past());
     var statusArray = ['Received', 'Ongoing', 'Shipped'];
     var status = '' + statusArray[Math.floor(Math.random()*statusArray.length)];
-    order += '(' + (Math.floor(Math.random() * 100)+1) + ', \'' + 
+    order += '(' + (Math.floor(Math.random() * 100)+1) + ', '+
+            (Math.floor(Math.random() * 100)+1) + ', \'' + 
             dateFormat(o, "yyyy-mm-dd") + '\', ' + 
-            (Math.floor(Math.random() * 40)+1) + ',\'' + 
+            (Math.floor(Math.random() * 40)+1) + ',' +
+            Math.floor(Math.random() * 14) + ', \'' + 
             status + '\'),' + '\n';
-    ord_detail += '(' + (Math.floor(Math.random() * 200)+1) + ', ' + 
-            (Math.floor(Math.random() * 100)+1) + ', ' + 
-            Math.floor(Math.random() * 14) + '),' + '\n';
 };
 fs.writeFile('test.txt', author, function(err){
     if(err){
@@ -54,7 +52,6 @@ fs.writeFile('test.txt', author, function(err){
     fs.appendFileSync('test.txt', customer);
     fs.appendFileSync('test.txt', shipper);
     fs.appendFileSync('test.txt', order);
-    fs.appendFileSync('test.txt', ord_detail);
     fs.appendFileSync('test.txt', rating);
     console.log("Data generated into file test.txt!");
     console.log("\nREMEMBER TO END YOU QUERIES WITH SEMICOLOMS \';\'");
