@@ -25,7 +25,7 @@ CREATE TABLE Customers(
     first_name VARCHAR(20) NOT NULL,
     last_name VARCHAR(20) NOT NULL,
     street VARCHAR(50),
-    city VARCHAR(20),
+    city VARCHAR(50),
     phone_number NUMERIC(9,0) NOT NULL,
     email VARCHAR(50) NOT NULL
 );
@@ -76,6 +76,7 @@ SELECT
   customer_id,
   CONCAT(first_name, ' ', last_name) AS full_name,
   title,
+  date,
   (price * quantity) AS total_amount
 FROM Orders
   INNER JOIN Customers ON Orders.customer_id = Customers.id
