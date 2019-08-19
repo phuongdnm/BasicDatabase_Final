@@ -5,7 +5,7 @@
 This project requires [MySQL](https://www.mysql.com/) to run.
 > If you're using **Linux**, you many need to [disable AUTO_FULL_GROUP_BY](https://stackoverflow.com/questions/23921117/disable-only-full-group-by) in MySQL.
 
-> **Optional**: If you want to explore all feature, you may need to install [Node.JS](https://nodejs.org/en/) and [nmp](https://www.npmjs.com/get-npm).
+> **Optional**: If you want to explore all feature, you may need to install [Node.JS](https://nodejs.org/en/) and [npm](https://www.npmjs.com/get-npm).
 
 1. Clone this repository to your local machine:
 ```sh
